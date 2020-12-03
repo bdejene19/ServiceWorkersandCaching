@@ -1,0 +1,52 @@
+Pre-lesson Notes:
+- Service workers => huge part of modern web development (especially PWAs => work more like Native apps than webapps)
+- Can do lots with service workers => e.g. offline content loading (popular with PWAs), push notifications, background sync
+
+This tutorial focuses on basics of service workers and what they are
+- talk about some of the events in the service worker api
+- we will then learn to cache all the pages on a website to be able to load pages when a user has no internet
+
+
+there are 3rd partys fo service workers (e.g. workbox)
+
+
+Course Beginning:
+
+What is a service worker?
+- a JS scrip that gets registered with the web browser
+- stays registered with the browser even when offline 
+- can load content even with no connection => this is a huge requirement of PWAs (makes it seem like moe of a native app)
+
+a normal req/res => web browser sends a request to the server, and remote server returns a response
+with a service worker registered => adds another step in the middle, intercepting the request and decides what happens with it (e.g. displaying a remote server version vs an offline version)
+    - this is what helps us create custom offline pages to prevent the error 404 pages
+
+
+More about Service workers
+- cannot directly access the DOM => instead communicates with the pages it controls through sending messages through the post message interface
+    - these pages can then manipulate the DOM if needed, therefore, is not done dirrectly
+- programmable network proxy => allows you to control how network requests from your page are handled 
+- terminated when not being used
+- make use of promises 
+- KEY: you need HTTPS to use service workers when deploying a webpage, unless being run on a localhost
+
+
+
+Use Cases:
+- caching assests, offline browsing & API calls
+- push notifications (Push and Notification API)
+- background data sync/preload => allows you to defer actions until the user has a stable connection 
+    - e.g. instagram favouriting a post while offline => doesn't register until stable connection
+    - note: this was not fully supported on all browsers at time of video (Aug 3, 2018)
+    - is supported on all major browsers    
+
+
+Service Workers Lifecycle and events
+- service workers have a life cycle 
+- need to register service worker 
+- then trigger it by using the install event
+- then can activate it by triggering the activate event
+- after that it can receive message and functional eevents such as "fecth", "push", "sync"
+
+
+
